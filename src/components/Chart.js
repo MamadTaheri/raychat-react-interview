@@ -29,7 +29,7 @@ const Chart = () => {
         ageCategories[user] = ageCategories[user] ? ageCategories[user] + 1 : 1;
       });
 
-      console.log(userAges);
+      // console.log(userAges);
       //   console.log(ageCategories);
 
       ageCategories.forEach((value, index) => {
@@ -39,7 +39,7 @@ const Chart = () => {
         }
       });
 
-      console.log(chartLabels);
+      // console.log(chartLabels);
       //   console.log(chartData)
 
       setUsers({
@@ -47,9 +47,30 @@ const Chart = () => {
         userAgesCount: userAges.length,
         chartLabels: chartLabels,
         chartData: chartData,
+        selectedChartLabels: chartLabels,
+        selectedChartData: chartData,
+
       });
     });
   }, []);
+
+  const ageSelectorChange = (e) => {
+    let updatedChartLabels = [];
+    let updatedChartData = [];
+
+    const selectedIndex =e.target.value 
+    const updatedState = {...users}
+    updatedChartLabels.push(users.chartLabels[selectedIndex]);
+    updatedChartData.push(users.chartData[selectedIndex]);
+
+    setUsers({
+      ...users,
+      selectedChartLabels: updatedChartLabels,
+      selectedChartData: updatedChartData,
+
+    })
+
+  }
 
   return (
     <>
@@ -94,14 +115,9 @@ const Chart = () => {
           </div>
 
           <div className="col-md-2 ">
-            <select
-              className="form-control"
-              aria-label="Default select example"
-            >
-              <option>Open this select menu</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+            <span>انتخاب سن</span>
+            <select onChange={e => ageSelectorChange(e)} className="form-control" >
+              {users.chartLabels.map((value, index) => <option key={value} value={index}>{value}</option>)}   
             </select>
           </div>
         </div>
