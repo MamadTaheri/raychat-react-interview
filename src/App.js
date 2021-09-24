@@ -6,7 +6,7 @@ import Topbar from './components/Topbar'
 
 const App = () => {
   return (
-    <div className="container-fluid px-md-5"> 
+    <div className="container-fluid"> 
         <Topbar />
 
         <Statistic />

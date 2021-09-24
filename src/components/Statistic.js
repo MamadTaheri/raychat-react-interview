@@ -1,11 +1,16 @@
-import React from 'react';
+import React from "react";
+
+// components
+import Summary from './Summary'
 
 const Statistic = () => {
-    return (
-        <div>
-            Statistic
-        </div>
-    );
+  return (
+    <>
+     <Summary /> 
+
+
+    </>
+  );
 };
 
 export default Statistic;
